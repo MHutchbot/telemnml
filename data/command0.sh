@@ -1,0 +1,1 @@
+python3 ./get_link.py Bandcamp 4209
