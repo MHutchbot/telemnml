@@ -1,0 +1,5 @@
+onClick={() => {if (value.link=="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3" || value.link=="") {cacheSong(value.message_id, value.genre, value.name, value.link, index); console.log(songs[index]); setSong(index);} else {setSong(index)}}}
+
+                    {Desktop() && <div onClick={() => sendBot(value.message_id, value.genre, user.id)} style={{fontSize: "1px", float: "right"}}>
+                      &nbsp;&nbsp;<i className="material-icons" style={{color: "white", verticalAlign: "bottom"}}>get_app</i>&nbsp;&nbsp; <span style={{fontSize: "10px"}}>{value.clickCount}</span>
+                    </div>}

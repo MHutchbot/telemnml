@@ -1,0 +1,59 @@
+                    <div style={{float: "left"}}>
+                      <RenderEP value={value}></RenderEP>
+                      <a href="#" onClick={() => {sendBot(value.message_id, value.genre, user.id)}} style={{textDecoration: "none", color: "white"}}><span style={{backgroundColor: "#3B4252", borderRadius: "10px"}}>&nbsp;&nbsp;&nbsp;&nbsp;{value.name.slice(0, 15)}&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                    </div>
+
+
+                    <div style={{margin: "0 auto", width: "99%"}}>
+          {songs.map((value, index) => {
+            if (currentSongLoaded>=songsToLoad || value.name.toLowerCase().includes("unknown") || songNames.includes(value.name) || value.link == "error") return (<></>)
+            songNames.push(value.name);
+            if (query) {
+              query = query.toLowerCase();
+              console.log(query, filter);
+              if (filter=="all") {
+                if (!value.name.toLowerCase().includes(query) && !value.genre.toLowerCase().includes(query) && !value.artist.toLowerCase().includes(query) && !value.cat.toLowerCase().includes(query) && !value.albumName.toLowerCase().includes(query)) {
+                  return (<></>)
+                }
+              }
+              else if (filter=="name") {
+                if (!value.name.toLowerCase().includes(query)) {
+                  return (<></>)
+                }
+              }
+              else if (filter=="album") {
+                if (!value.albumName.toLowerCase().includes(query)) {
+                  return (<></>)
+                }
+              }
+              else if (filter=="artist") {
+                if (!value.artist.toLowerCase().includes(query)) {
+                  return (<></>)
+                }
+              }
+              else if (filter=="genre") {
+                if (!value.genre.toLowerCase().includes(query)) {
+                  return (<></>)
+                }
+              }
+              else if (filter=="catalog") {
+                if (!value.cat.toLowerCase().includes(query)) {
+                  return (<></>)
+                }
+              }
+            }
+            currentSongLoaded += 1;
+            return (
+                  <div style={{textAlign: "start", fontFamily: "'Montserrat', sans-serif", color: "white", margin: "15px", marginTop: "12px", overflow: "hidden", fontSize: "14px", width: "100%"}}>
+                      {(value.genre=="Electro/Others" || value.genre=="Minimal") && <div style={{float: "left", width: "45%"}}>
+                        <RenderEP value={value}></RenderEP>
+                        <a href="#" onClick={() => {sendBot(value.message_id, value.genre, user.id)}} style={{textDecoration: "none", color: "white"}}><span style={{backgroundColor: "#3B4252", borderRadius: "10px"}}>&nbsp;&nbsp;&nbsp;&nbsp;{value.name.slice(0, 15)}&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                      </div>}
+                      {(value.genre=="Bandcamp") && <div style={{float: "right", width: "45%"}}>
+                        <RenderEP value={value}></RenderEP>
+                        <a href="#" onClick={() => {sendBot(value.message_id, value.genre, user.id)}} style={{textDecoration: "none", color: "white"}}><span style={{backgroundColor: "#3B4252", borderRadius: "10px"}}>&nbsp;&nbsp;&nbsp;&nbsp;{value.name.slice(0, 15)}&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                      </div>}
+                      <div style={{clear: "both"}}></div>
+                  </div>
+            )
+          })}

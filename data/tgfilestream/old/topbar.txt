@@ -1,0 +1,18 @@
+<div style={topbarStyle}>
+            <div style={topbarContentStyle}>
+              {currentSong!=null && <div style={{float: "right"}}>
+                <a href={"/songs/"+currentSong}><i className="material-icons" style={{marginTop: "10px", marginRight: "10px", color: "black"}}></i></a>
+              </div>}
+              <div style={{marginBottom: "-10px", float: "left"}}>
+                <h4>{currentSong >= 0 && songs[currentSong]!=undefined ? songs[currentSong].name : "No song"}</h4>
+              </div>
+              <audio
+                style={{width: "500px", outline: "none", maxWidth: "85vw", marginBottom: "0px"}}
+                controls
+                src={songs[currentSong] ? songs[currentSong].link : ""}>
+                Your browser does not support audio element
+              </audio>
+            </div>
+          </div>
+
+                    <div style={{background: "transparent", height: "17vh"}}></div>
